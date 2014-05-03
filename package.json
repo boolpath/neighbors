@@ -1,6 +1,6 @@
 {
     "name": "neighbor",
-    "description": "Building block for multidimensional neighborhood models.",
+    "description": "A building block for multidimensional neighborhood models.",
     "homepage": "https://github.com/jorgezaccaro/neighbor",
     "author": {
         "name": "Jorge Zaccaro",
