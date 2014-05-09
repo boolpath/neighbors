@@ -1,5 +1,5 @@
 {
-    "name": "neighbor",
+    "name": "neighbors",
     "description": "A building block for multidimensional neighborhood models.",
     "homepage": "https://github.com/jorgezaccaro/neighbor",
     "author": {
@@ -10,6 +10,6 @@
     "version": "0.0.1",
     "license": "MIT",
     "dependencies": {},
-    "keywords": ["neighborhood", "multidimensional"],
-    "main": "neighbor.js"
+    "keywords": ["neighbor", "neighborhood", "multidimensional"],
+    "main": "neighbors.js"
 }
