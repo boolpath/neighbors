@@ -47,6 +47,15 @@ function createNeighborhood(axes) {
 
     // Neighborhood relationships
     var numNeighbors = Math.pow(3, neighborhood.dimension) - 1;
+    for (var neighbor = 0; neighbor < numNeighbors; neighbor++) {
+        var axes = neighborhood.axes,
+            neighborString = axes[0];
+        for (var axis = 1, dimension = neighborhood.dimension;
+             axis < dimension; axis++) {
+            neighborString += '-' + axes[axis];
+        }
+        console.log(neighborString);
+    }
 
   return neighborhood;
 }
