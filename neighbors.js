@@ -14,9 +14,12 @@ module.exports = {
  * @returns {object} neighborhood - 
  */
 function createNeighborhood(axes) {
-    var neighborhood = {
-        axes: {}
-    };
+    var neighborhood = Object.create({}, {
+        axes: {
+            enumerable: true,
+            value: []
+        }
+    });
 
     // Parameter validation
     if (!(axes instanceof Array)) {
@@ -24,29 +27,13 @@ function createNeighborhood(axes) {
     }
 
     // Multidimensional space generation
-    var dimensions = 0;
     for (var index in axes) {
         var axis = axes[index];
         if (typeof axis === 'string') {
-            dimensions++;
-            Object.defineProperty(neighborhood.axes, axis, {
-                enumerable: true,
-                value: Object.create({}, {
-                    lower: {
-                        writable: true,
-                        enumerable: true,
-                        value: undefined
-                    },
-                    higher: {
-                        writable: true,
-                        enumerable: true,
-                        value: undefined
-                    }
-                })
-            });
+            neighborhood.axes.push(axis);
         }
     }
-    neighborhood.dimension = dimensions;
+    neighborhood.dimension = neighborhood.axes.length;
 
   return neighborhood;
 }
