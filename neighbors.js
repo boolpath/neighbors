@@ -46,16 +46,26 @@ function createNeighborhood(axes) {
     neighborhood.dimension = neighborhood.axes.length;
 
     // Neighborhood relationships
-    var numNeighbors = Math.pow(3, neighborhood.dimension) - 1;
-    for (var neighbor = 0; neighbor < numNeighbors; neighbor++) {
-        var axes = neighborhood.axes,
-            neighborString = axes[0] + (axis % dimension);
-        for (var axis = 1, dimension = neighborhood.dimension;
-             axis < dimension; axis++) {
-            neighborString += '-' + axes[axis] + (axis % dimension);
+    var numNeighbors = Math.pow(3, neighborhood.dimension) - 1,
+        positions = ['l', 'm', 'h'],
+        axes = neighborhood.axes,
+        axesLength = axes.length;
+    (function createRelation(neighbor) {
+        var neighborKey = axes[0];
+        if (axes[1]) {
+            (function createAxis(axis) {
+                neighborKey += '-' + axes[axis];
+                if (++axis < axesLength) {
+                    createAxis(axis);
+                }
+            })(1);
         }
-        console.log(neighborString);
-    }
+        console.log(neighbor, neighborKey);
+
+        if (++neighbor <= numNeighbors) {
+            createRelation(neighbor);
+        }
+    })(0);
 
   return neighborhood;
 }
