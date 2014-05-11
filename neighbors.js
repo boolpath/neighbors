@@ -15,9 +15,18 @@ module.exports = {
  */
 function createNeighborhood(axes) {
     var neighborhood = Object.create({}, {
+        dimension: {
+            writable: true,
+            enumerable: true,
+            value: 0
+        },
         axes: {
             enumerable: true,
             value: []
+        },
+        neighbors: {
+            enumerable: true,
+            value: {}
         }
     });
 
@@ -33,7 +42,11 @@ function createNeighborhood(axes) {
             neighborhood.axes.push(axis);
         }
     }
+    // Space dimension
     neighborhood.dimension = neighborhood.axes.length;
+
+    // Neighborhood relationships
+    var numNeighbors = Math.pow(3, neighborhood.dimension) - 1;
 
   return neighborhood;
 }
