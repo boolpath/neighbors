@@ -42,6 +42,7 @@ function createNeighborhood(axes) {
             neighborhood.axes.push(axis);
         }
     }
+    if (neighborhood.axes.length < 1) return;
     // Space dimension
     neighborhood.dimension = neighborhood.axes.length;
 
@@ -51,21 +52,25 @@ function createNeighborhood(axes) {
         axes = neighborhood.axes,
         axesLength = axes.length;
     (function createRelation(neighbor) {
-        var neighborKey = axes[0];
+        var neighborKey = axes[0] + positions[(neighbor % Math.pow(3, 1))];
         if (axes[1]) {
             (function createAxis(axis) {
-                neighborKey += '-' + axes[axis];
+                var positionIndex = Math.floor((neighbor % Math.pow(3, axis + 1)) / Math.pow(3, axis));
+                neighborKey += '-' + axes[axis] + positions[positionIndex];
                 if (++axis < axesLength) {
                     createAxis(axis);
                 }
             })(1);
         }
-        console.log(neighbor, neighborKey);
+        Object.defineProperty(neighborhood.neighbors, neighborKey, {
+            enumerable: true,
+            value: {}
+        });
 
         if (++neighbor <= numNeighbors) {
             createRelation(neighbor);
         }
     })(0);
 
-  return neighborhood;
+    return neighborhood;
 }
