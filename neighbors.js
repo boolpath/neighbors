@@ -49,10 +49,10 @@ function createNeighborhood(axes) {
     var numNeighbors = Math.pow(3, neighborhood.dimension) - 1;
     for (var neighbor = 0; neighbor < numNeighbors; neighbor++) {
         var axes = neighborhood.axes,
-            neighborString = axes[0];
+            neighborString = axes[0] + (axis % dimension);
         for (var axis = 1, dimension = neighborhood.dimension;
              axis < dimension; axis++) {
-            neighborString += '-' + axes[axis];
+            neighborString += '-' + axes[axis] + (axis % dimension);
         }
         console.log(neighborString);
     }
